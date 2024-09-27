@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.zybooks.tic_tac_toe_isys_221'
+    namespace 'com.isys221group9.tic_tac_toe'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.zybooks.tic_tac_toe_isys_221"
+        applicationId "com.isys221group9.tic_tac_toe"
         minSdk 30
         targetSdk 34
         versionCode 1

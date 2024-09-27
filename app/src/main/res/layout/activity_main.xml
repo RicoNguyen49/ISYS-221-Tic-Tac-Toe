@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.zybooks.tic_tac_toe_isys_221.MainActivity">
+    tools:context="com.isys221group9.tic_tac_toe.controllers.MainActivity">
 
     <GridLayout
         android:id="@+id/ttt_grid"

@@ -1,4 +1,4 @@
-package com.zybooks.tic_tac_toe_isys_221;
+package com.isys221group9.tic_tac_toe;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.zybooks.tic_tac_toe_isys_221", appContext.getPackageName());
+        assertEquals("com.isys221.group9.tic_tac_toe_isys_221", appContext.getPackageName());
     }
 }
