@@ -3,13 +3,14 @@ package com.isys221group9.tic_tac_toe.models;
 // player class
 public class Player {
     // players name
-    private String name;
+    private final String name;
     // players marker
-    private char marker;
+    private final char marker;
 
     // Player constructor
     public Player(String name, char marker) {
         this.name = name;
+        this.marker = marker;
     }
 
     // Get Player Name
@@ -22,13 +23,4 @@ public class Player {
         return marker;
     }
 
-    // Set Player Name
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    // Set Player Marker
-    public void setMarker(char marker) {
-        this.marker = marker;
-    }
 }

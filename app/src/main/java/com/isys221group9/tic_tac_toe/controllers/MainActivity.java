@@ -14,131 +14,92 @@ import androidx.annotation.NonNull;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.core.content.ContextCompat;
+import com.isys221group9.tic_tac_toe.R;
+import com.isys221group9.tic_tac_toe.models.GameState;
 
 public class MainActivity extends AppCompatActivity {
-
-    private LightsOutGame mGame;
-
-    private GridLayout mLightGrid;
-
-    private int mLightOnColor;
-
-    private int mLightOffColor;
-
+    private GameController game;
+    private GridLayout gridPlaceholder;
     private final String GAME_STATE = "gameState";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
-        mLightGrid = findViewById(R.id.light_grid);
+        game = new GameController();
 
-        for (int buttonIndex = 0; buttonIndex < mLightGrid.getChildCount(); buttonIndex++) {
-            Button gridButton = (Button) mLightGrid.getChildAt(buttonIndex);
-            gridButton.setOnClickListener(this::onLightButtonClick);
+        gridPlaceholder = findViewById(R.id.ttt_grid);
+
+        for (int buttonIndex = 0; buttonIndex < gridPlaceholder.getChildCount(); buttonIndex++) {
+            Button gridButton = (Button) gridPlaceholder.getChildAt(buttonIndex);
+            gridButton.setOnClickListener(this::onCellClick);
         }
-
-        Button winButton = (Button) mLightGrid.getChildAt(0);
-
-        winButton.setOnLongClickListener(this::onLongWinButtonClick);
-
-        mLightOnColor = ContextCompat.getColor(this, R.color.yellow);
-
-        mLightOffColor = ContextCompat.getColor(this, R.color.black);
-
-        mGame = new LightsOutGame();
 
         if (savedInstanceState == null) {
             startGame();
         }
         else {
-            String gameState = savedInstanceState.getString(GAME_STATE);
+            GameState gameState = (GameState) savedInstanceState.getSerializable(GAME_STATE);
+            game.setState(gameState);
 
-            mGame.setState(gameState);
+            System.out.println("Saving Game State: " + gameState);
 
-            setButtonColors();
+            updateUI();
         }
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putSerializable(GAME_STATE, game.getState());
 
-        outState.putString(GAME_STATE, mGame.getState());
+        if (game.getState() != null) {
+            System.out.println("Saving Game State: " + game.getState().toString());
+        }
     }
 
     private void startGame() {
-        mGame.newGame();
-
-        setButtonColors();
+        game.newGame();
+        updateUI();
     }
 
-    private void onLightButtonClick(View view) {
+    private void onCellClick(View view) {
+        // game is already over so do nothing.
+        if (game.isGameOver()) {
+            return;
+        }
 
-        int buttonIndex = mLightGrid.indexOfChild(view);
+        int buttonIndex = gridPlaceholder.indexOfChild(view);
+        int row = buttonIndex / 3;
+        int col = buttonIndex % 3;
 
-        int row = buttonIndex / LightsOutGame.GRID_SIZE;
-
-        int col = buttonIndex % LightsOutGame.GRID_SIZE;
-
-        mGame.selectLight(row, col);
-
-        setButtonColors();
-
-        if (mGame.isGameOver()) {
-            Toast.makeText(this, R.string.congrats, Toast.LENGTH_SHORT).show();
+        game.handleMove(row, col);
+        updateUI();
+        if (game.isGameOver()) {
+            Toast.makeText(this, game.getGameOverMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
-    private boolean onLongWinButtonClick(View view) {
+    private void updateUI() {
 
-        mGame.instantWin();
+        for (int buttonIndex = 0; buttonIndex < gridPlaceholder.getChildCount(); buttonIndex++) {
+            Button gridButton = (Button) gridPlaceholder.getChildAt(buttonIndex);
+            int row = buttonIndex / 3;
+            int column = buttonIndex % 3;
 
-        setButtonColors();
-
-        if (mGame.isGameOver()) {
-            Toast.makeText(this, R.string.congrats, Toast.LENGTH_SHORT).show();
-        }
-
-        return true;
-    }
-
-    private void setButtonColors() {
-
-        for (int buttonIndex = 0; buttonIndex < mLightGrid.getChildCount(); buttonIndex++) {
-            Button gridButton = (Button) mLightGrid.getChildAt(buttonIndex);
-
-            int row = buttonIndex / LightsOutGame.GRID_SIZE;
-
-            int col = buttonIndex % LightsOutGame.GRID_SIZE;
-
-            if (mGame.isLightOn(row, col)) {
-                gridButton.setBackgroundColor(mLightOnColor);
-
-                setButtonDescription(gridButton,true);
+            if (game.getBoardCell(row, column) == -1) {
+                gridButton.setText("X");
+            } else if (game.getBoardCell(row, column) == 1) {
+                gridButton.setText("O");
             } else {
-                gridButton.setBackgroundColor(mLightOffColor);
-
-                setButtonDescription(gridButton,false);
+                gridButton.setText("");
             }
-        }
-    }
-
-    private void setButtonDescription(Button button, boolean lightOn) {
-        if (lightOn) {
-            button.setContentDescription(getString(R.string.uppercaps_on));
-        } else {
-            button.setContentDescription(getString(R.string.uppercaps_off));
         }
     }
 
     public void onNewGameClick(View view) {
         startGame();
     }
-
-
 }
