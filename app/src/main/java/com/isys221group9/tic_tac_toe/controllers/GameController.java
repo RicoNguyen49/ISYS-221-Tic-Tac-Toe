@@ -53,10 +53,10 @@ public class GameController {
     }
 
     public void setGameOverMessage() {
-        if (gameState.isDraw()) {
-            gaveOverMessage = "DRAW!";
-        } else {
+        if (gameState.isWin()) {
             gaveOverMessage = String.format("%s WINS!", gameState.getCurrentPlayer().getName());
+        } else {
+            gaveOverMessage = "CAT!";
         }
     }
 
