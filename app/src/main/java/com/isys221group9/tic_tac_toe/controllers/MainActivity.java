@@ -59,6 +59,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_new_game) {
+            startGame();
+            return true;
+        } else if (item.getItemId() == R.id.action_quit) {
+            onQuitClick(null);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable(GAME_STATE, game.getState());
