@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#020202</color> <!-- Primary Color -->
+    <color name="colorPrimaryDark">#FF3700B3</color> <!-- Darker Primary Color -->
+    <color name="colorAccent">#FF03DAC5</color> <!-- Accent Color -->
+    <color name="buttonBackground">#011D95</color> <!-- Background for Game Buttons -->
+    <color name="buttonText">#000000</color> <!-- Text Color for Buttons -->
+    <color name="currentPlayerText">#FF03DAC5</color> <!-- Current Player Text Color -->
 </resources>

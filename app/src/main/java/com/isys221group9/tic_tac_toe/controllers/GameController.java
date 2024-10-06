@@ -10,6 +10,7 @@ public class GameController {
     private Player player1, player2;
     private String gaveOverMessage;
 
+
     public GameController() {
         gameBoard = new GameBoard();
         player1 = new Player("Player 1", 'X');
@@ -53,10 +54,10 @@ public class GameController {
     }
 
     public void setGameOverMessage() {
-        if (gameState.isWin()) {
-            gaveOverMessage = String.format("%s WINS!", gameState.getCurrentPlayer().getName());
+        if (gameState.isDraw()) {
+            gaveOverMessage = "DRAW!";
         } else {
-            gaveOverMessage = "CAT!";
+            gaveOverMessage = String.format("%s WINS!", gameState.getCurrentPlayer().getName());
         }
     }
 
@@ -81,4 +82,5 @@ public class GameController {
             player2 = gameState.getCurrentPlayer();
         }
     }
+
 }
