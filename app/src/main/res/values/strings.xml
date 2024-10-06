@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Tic-Tac-Toe-ISYS-221</string>
     <string name="new_game">New Game</string>
-    <string name="current_player_player_1">Current Player: Player 1</string>
+    <string name="current_player_text">Current Player: %1$s</string>
     <string name="quit_game">Quit</string>
+    <string name="quit">Quit</string>
 </resources>

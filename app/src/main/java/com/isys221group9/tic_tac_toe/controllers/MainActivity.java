@@ -125,7 +125,8 @@ public class MainActivity extends AppCompatActivity {
     }
     private void updateCurrentPlayerText() {
         Player currentPlayer = game.getState().getCurrentPlayer();
-        currentPlayerText.setText("Current Player: " + currentPlayer.getName());
+        String playerNameText = getString(R.string.current_player_text, currentPlayer.getName());
+        currentPlayerText.setText(playerNameText);
     }
 
     public void onNewGameClick(View view) {
