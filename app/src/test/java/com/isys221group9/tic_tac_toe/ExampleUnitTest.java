@@ -1,4 +1,4 @@
-package com.zybooks.tic_tac_toe_isys_221;
+package com.isys221group9.tic_tac_toe;
 
 import org.junit.Test;
 

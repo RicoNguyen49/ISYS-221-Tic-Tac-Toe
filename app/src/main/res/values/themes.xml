@@ -1,9 +1,43 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.TicTacToeISYS221" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="Theme.TicTacToeISYS221" parent="Base.Theme.TicTacToeISYS221" />
+    <!-- Style for Game Buttons -->
+    <style name="GameButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">#3250D7</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_margin">4dp</item>
+    </style>
+
+    <!-- Style for Game Option Buttons -->
+    <style name="GameOptionButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+    <!-- Style for Current Player Text -->
+    <style name="CurrentPlayerText">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">#0322F0</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="GameGridStyle">
+        <item name="android:background">@drawable/grid_background</item> <!-- Use drawable for rounded corners -->
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
 </resources>
